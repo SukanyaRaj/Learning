@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="index.css" />
+        <title>Hello World</title>
+          <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="index.js"></script>
+        <script type="text/javascript" src="video.js"></script>
+          <script type="text/javascript" charset="utf-8" src="cdv-plugin-fb-connect.js"></script>
+<script type="text/javascript" charset="utf-8" src="facebook_js_sdk.js"></script>
+        <script type="text/javascript">
+        document.addEventListener('deviceready', function() {
+			try {
+				alert('Device is ready!	Make sure you set your app_id below this alert.');
+				FB.init({
+					appId : "197233297116293",
+					nativeInterface : CDV.FB,
+					useCachedDialogs : false
+				});
+				document.getElementById('loginPage');
+			} catch (e) {
+				alert(e);
+			}
+		}, false);
+     function play() {
+			
+			FB.login(function(response) {
+				if (response.authResponse)
+				 {
+					 FB.ui({
+method: 'feed',
+name: 'Has just watched a video in showhow2',
+link: "http://www.showhow2.com/films/content/10/Ch_02/F01.mp4/2520",
+picture: "http://www.showhow2.com/img/assets/others/windows7.png",
+caption: "Windows Video",
+description: "Description about video"
+});
+				} else 
+				{
+					alert('not logged in');
+				}
+			}, {
+				scope : "email"
+			});
+		}
+        </script>
+    </head>
+    <body>
+      <div class="body">
+  		<button onclick="play()">Play Me!</button>
+  		 </div>      
+        <p>Video courtesy Youtube.</p>
+    </body>
+</html>

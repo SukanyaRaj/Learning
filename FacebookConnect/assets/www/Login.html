@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta name="viewport" content="width=320; user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Auth Demo</title>
+    <link rel="stylesheet" href="jquery.mobile-1.0rc2.css" type="text/css" charset="utf-8" />
+   <script type="text/javascript" src="jquery-1.7.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script src="jquery.mobile-1.0rc2.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cdv-plugin-fb-connect.js"></script>
+<script type="text/javascript" charset="utf-8" src="facebook_js_sdk.js"></script>
+    <script type="text/javascript" charset="utf-8" src="main.js"></script>
+<script type="text/javascript">
+document.addEventListener('deviceready', function() {
+			try {
+				alert('Device is ready!	Make sure you set your app_id below this alert.');
+				FB.init({
+					appId : "197233297116293",
+					nativeInterface : CDV.FB,
+					useCachedDialogs : false
+				});
+				document.getElementById('loginPage');
+			} catch (e) {
+				alert(e);
+			}
+		}, false);
+
+function login() {
+			
+			FB.login(function(response) {
+				if (response.authResponse)
+				 {
+					window.location="index.html";
+				} else 
+				{
+					alert('not logged in');
+				}
+			}, {
+				scope : "email"
+			});
+		}
+</script>
+</head>
+
+<body >
+    
+<div id="loginPage" data-role="page">
+
+    <div data-role="header">
+        <h1>Login Using FaceBook</h1>
+    </div>
+
+    <div data-role="content">    
+
+        <form id="loginForm">
+        <div data-role="fieldcontain" class="ui-hide-label">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" value="" placeholder="Username" />
+        </div>
+
+        <div data-role="fieldcontain" class="ui-hide-label">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" value="" placeholder="Password" />
+        </div>
+
+	<div data-role="fieldcontain" class="ui-hide-label">
+             <a href="#" data-role="button" onClick="login()" data-mini="true">Login using FaceBook</a></h3>
+        </div>
+        
+        
+
+        <input type="submit" value="Login" id="submitButton">
+        </form>
+        
+    </div>
+
+    <div data-role="footer">
+        <h4>Innoventes Technologies</h4>
+    </div>
+
+</div>
+</body>
+</html>
